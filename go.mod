@@ -8,4 +8,5 @@ require (
 	github.com/tidwall/gjson v1.6.1
 	golang.org/x/net v0.0.0-20200904194848-62affa334b73 // indirect
 	moul.io/http2curl v1.0.0 // indirect
+	
 )
