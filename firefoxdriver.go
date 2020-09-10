@@ -85,7 +85,7 @@ func (f *FirefoxDriver) Start() error{
 
 func (f *FirefoxDriver) Stop()error  {
 
-		f.Request(nil,GET,"http://127.0.0.1:1234/shutdown")
+		f.r.Get("http://127.0.0.1:1234/shutdown")
 		err := f.cmd.Process.Signal(os.Interrupt)
 		if f.logFile != nil {
 			f.logFile.Close()
@@ -114,8 +114,7 @@ func (f *FirefoxDriver) NewSession() (*Session, error){
 		desired := f.Cap
 		required := Capabilities{}
 		p := params{"desiredCapabilities": desired, "requiredCapabilities": required}
-
-       body,_ := f.Request(p,POST,"http://127.0.0.1:1234/session")
+       body := f.r.Post("http://127.0.0.1:1234/session",p)
 		sid := gjson.Get(body, "value.sessionId")
 		f.Id = sid.String()
        return f.Session,nil
