@@ -44,6 +44,6 @@ func (s *Session) Source() string{
 
 func (s *Session) GetUrl() string{
 	ru := fmt.Sprintf("http://127.0.0.1:1234/session/%s/url",s.Id)
-	body,_ := s.Request(nil,GET,ru)
+	body := s.r.Get(ru)
 	return body
 }
